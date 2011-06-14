@@ -1,0 +1,1 @@
+TFURLConnection is a block-based wrapper for NSURLConnection. You can set a class to be used for output, such as NSString. TFURLConnection transforms data into this type by using -initWithData:, -initWithData:encoding: or +TFUC_objectWithData:response: (which you can implement yourself to add support for other classes).
