@@ -8,6 +8,18 @@
 
 @interface TFURLConnection : NSObject {
 	NSMutableURLRequest *request;
+	NSURLConnection *connection;
+	NSURLResponse *response;	
+	NSMutableData *buffer;
+	
+	Class outputKind;
+	NSString *HTTPMethod;
+	NSData *HTTPBody;
+	
+	void(^completionHandler)(id output, NSURLResponse *response);
+	void(^errorHandler)(NSError *error);
+	void(^dataHandler)(NSData *chunk);
+	void(^authenticationHandler)(NSURLAuthenticationChallenge *challenge);
 }
 
 - (id)initWithURLRequest:(NSURLRequest*)req;
