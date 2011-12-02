@@ -17,7 +17,7 @@
 
 @implementation TFURLConnection
 @synthesize connection, buffer, response;
-@synthesize completionHandler, errorHandler, dataHandler, authenticationHandler,uploadProgressHandler;
+@synthesize completionHandler, errorHandler, dataHandler, authenticationHandler, uploadProgressHandler;
 @synthesize outputKind;
 
 
