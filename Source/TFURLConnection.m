@@ -17,7 +17,7 @@
 
 @implementation TFURLConnection
 @synthesize connection, buffer, response;
-@synthesize completionHandler, errorHandler, dataHandler, authenticationHandler;
+@synthesize completionHandler, errorHandler, dataHandler, authenticationHandler, uploadProgressHandler;
 @synthesize outputKind;
 
 
@@ -48,6 +48,7 @@
 	[request release];
 	self.connection = nil;
 	self.completionHandler = nil;
+	self.uploadProgressHandler = nil;
 	self.errorHandler = nil;
 	self.dataHandler = nil;
 	self.authenticationHandler = nil;
@@ -124,6 +125,12 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)resp {
 	self.response = resp;
+}
+
+- (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
+	
+	if(self.uploadProgressHandler)
+		self.uploadProgressHandler(bytesWritten, totalBytesWritten,totalBytesExpectedToWrite);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {

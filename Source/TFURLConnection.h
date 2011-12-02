@@ -20,6 +20,7 @@
 	void(^errorHandler)(NSError *error);
 	void(^dataHandler)(NSData *chunk);
 	void(^authenticationHandler)(NSURLAuthenticationChallenge *challenge);
+	void(^uploadProgressHandler)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite);
 }
 
 - (id)initWithURLRequest:(NSURLRequest*)req;
@@ -38,6 +39,7 @@
 @property(copy) void(^errorHandler)(NSError *error); // optional. if nil, completionHandler gets a nil output and response
 @property(copy) void(^dataHandler)(NSData *chunk); // optional. if set, completionHandler gets a nil output (collect data manually)
 @property(copy) void(^authenticationHandler)(NSURLAuthenticationChallenge *challenge); // optional
+@property(copy) void(^uploadProgressHandler)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite);
 
 @property(assign) Class outputKind; // class of output passed to completionHandler. nil = NSData. must respond to -initWithData:, -initWithData:encoding: or +TFUC_objectWithData:response:
 
